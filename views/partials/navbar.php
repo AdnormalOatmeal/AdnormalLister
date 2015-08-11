@@ -1,7 +1,7 @@
 <style>
 
-.search-form {
-	margin-top: 10px;
+.navbarFormat {
+	margin: 10px 0px;
 	border-bottom: 1px solid #C6C6C6;
 	padding-bottom: 10px;
 }
@@ -11,13 +11,46 @@
 	text-align: center;
 	width: 90%;
 }
-.login {
-	margin: 10px 0px;
-}
 
 </style>
 
 <!-- MODALS -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Login</h4>
+			</div>
+			<div class="modal-body">
+			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
+			 Login
+			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Sign up</h4>
+			</div>
+			<div class="modal-body">
+			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
+			 Sign up
+			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="modal fade" id="faqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -59,11 +92,11 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">About</h4>
+				<h4 class="modal-title" id="myModalLabel">Contact</h4>
 			</div>
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			About
+			Contact
 			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 			<div class="modal-footer">
@@ -76,7 +109,7 @@
 <!-- NAVBAR -->
 <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm container">
 	<a class="navmenu-brand visible-md visible-lg" href="http://adnormallister.dev">Adnormal Oatmeal</a>
-	<form class="form-inline search-form">
+	<form class="form-inline navbarFormat">
 		<div class="form-group">
 			<input type="text" class="form-control" id="search" placeholder="Search..." style="width: 225px;">
 		</div>
@@ -85,8 +118,12 @@
 		</div>
 	</form>
 
-	<div class="login">
-		<button class="btn btn-default">Login</button>
+	<div class="login navbarFormat">
+		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
+		<button class="btn btn-default" data-toggle="modal" data-target="#signupModal">Sign up</button>
+	</div>
+	<div class="newAdd navbarFormat">
+		<button class="btn btn-default">Create New Add</button>
 	</div>
 
 
