@@ -7,6 +7,7 @@
     $createUsers = "CREATE TABLE users (
         id INT UNSIGNED AUTO_INCREMENT,
         user_name VARCHAR(20) NOT NULL,
+        password VARCHAR(256) NOT NULL,
         first_name CHAR(100) NOT NULL,
         last_name CHAR(100) NOT NULL,
         location VARCHAR(255) NOT NULL,
@@ -16,7 +17,7 @@
         )";
 
     $dbc->exec($createUsers);
-    
+
     $dropAds = "DROP TABLE IF EXISTS ads";
 
     $createAds = "CREATE TABLE ads (
