@@ -2,6 +2,21 @@
     require_once 'ads_config.php';
     require_once 'db_connect.php';
 
+    $dropUsers = "DROP TABLE IF EXISTS users";
+
+    $createUsers = "CREATE TABLE users (
+        id INT UNSIGNED AUTO_INCREMENT,
+        user_name VARCHAR(20) NOT NULL,
+        first_name CHAR(100) NOT NULL,
+        last_name CHAR(100) NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        organization VARCHAR(255) NOT NULL,
+        PRIMARY KEY(id)
+        )";
+
+    $dbc->exec($createUsers);
+    
     $dropAds = "DROP TABLE IF EXISTS ads";
 
     $createAds = "CREATE TABLE ads (
@@ -19,20 +34,5 @@
         )";
 
     $dbc->exec($createAds);
-
-    $dropUsers = "DROP TABLE IF EXISTS users";
-
-    $createUsers = "CREATE TABLE users (
-        id INT UNSIGNED AUTO_INCREMENT,
-        user_name VARCHAR(20) NOT NULL,
-        first_name CHAR(100) NOT NULL,
-        last_name CHAR(100) NOT NULL,
-        location VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        organization VARCHAR(255) NOT NULL,
-        PRIMARY KEY(id)
-        )";
-
-
 ?>
 
