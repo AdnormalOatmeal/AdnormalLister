@@ -1,3 +1,19 @@
+<?php
+	require_once '../bootstrap.php';
+	require_once '../models/Ad.php';
+
+	$ads = Ad::all();
+	
+	$ads = $ads->attributes;
+
+	arsort($ads);
+
+	$featuredAds[] = array_pop($ads);
+	$featuredAds[] = array_pop($ads);
+	$featuredAds[] = array_pop($ads);	
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,7 +23,7 @@
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-		<title>Navmenu Template for Bootstrap</title>
+		<title>Adnormal Oatmeal</title>
 
 		<!-- Bootstrap core CSS -->
   		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +34,7 @@
 
 		<style type="text/css">
 			.linked-images {
-				float: left;
+				float: right;
 				margin-right: 10px;
 			}
 			.thing {
@@ -39,65 +55,28 @@
 			<!--===-->
 
 			<div class="container">
-			 <h1>Featured Ads</h1>
-				<div class="container col-sm-6 col-md-4">
-					<img src="img/hotdog.jpg" class="linked-images">
-					<h2>Item <small>TITLE</small></h2>
-
-					<p class="thing">
-						location - San Antonio, Tx
-						sell_by - 2015-08-15
-						categories - Continental
-						Hotdog styled in your preference, offering Chicago Style, New York Style, and South West Style dogs.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-				</div>
-				<div class="container col-sm-6 col-md-4">
-					<img src="img/hotdog.jpg" class="linked-images">
-					<h2>Item <small>TITLE</small></h2>
-
-					<p class="thing">
-						location - San Antonio, Tx
-						sell_by - 2015-08-15
-						categories - Continental
-						Hotdog styled in your preference, offering Chicago Style, New York Style, and South West Style dogs.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-				</div>
-				<div class="container col-sm-6 col-md-4">
-					<img src="img/hotdog.jpg" class="linked-images">
-					<h2>Item <small>TITLE</small></h2>
-
-					<p class="thing">
-						location - San Antonio, Tx
-						sell_by - 2015-08-15
-						categories - Continental
-						Hotdog styled in your preference, offering Chicago Style, New York Style, and South West Style dogs.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-				</div>
+			<h1>Featured Ads</h1>
+				<?php foreach ($featuredAds as $ad): ?>
+					<div class="container col-sm-6 col-md-4">
+						
+						<!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
+						<h2><?= $ad['title']; ?></h2>
+						<!-- END HEADER LINK -->
+						
+						<img src="<?= $ad['image_url']; ?>" class="linked-images">
+						<p class="thing">
+						<strong>Price: </strong>$<?= $ad['price']; ?> <br>
+						<strong>Description: </strong><?= $ad['description']; ?><br>
+						</p>
+					</div>
+				<?php endforeach ?>
 			</div>
+
 		<!-- END OF PAGE BODY. DO NOT PUT CUSTOM CODE AFTER HERE -->
 		</div>
-		
-
 		<!-- FOOTER -->
 		<!-- Note: Includes JS -->
 		<?php require_once '../views/partials/footer.php'; ?>
 		<!--===-->
+	</body>
 </html>
