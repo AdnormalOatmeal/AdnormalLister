@@ -69,7 +69,7 @@
 						<strong>Description: </strong><?= $ad['description']; ?><br>
 						</p>
 					</div>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 			</div>
 
 		<!-- END OF PAGE BODY. DO NOT PUT CUSTOM CODE AFTER HERE -->
