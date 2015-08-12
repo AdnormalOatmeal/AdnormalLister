@@ -17,7 +17,6 @@
                     $this->insert();
                 }
             }
-
         }
 
         public function update()
