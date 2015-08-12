@@ -68,7 +68,7 @@
         }
 
 
-        public function delete()
+        public static function delete($id)
         {
             $query = 'DELETE FROM ads
                     WHERE id = :id';
@@ -80,9 +80,12 @@
         public static function find($id)
         {
             self::dbConnect();
+
             $query = 'SELECT * FROM ads
                     WHERE id = :id';
+
             $stmt = self::$dbc->prepare($query);
+
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 

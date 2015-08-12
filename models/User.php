@@ -67,7 +67,7 @@
             $stmt->execute();
         }
 
-        public function delete()
+        public static function delete($id)
         {
             $query = 'DELETE FROM users
                     WHERE id = :id';
