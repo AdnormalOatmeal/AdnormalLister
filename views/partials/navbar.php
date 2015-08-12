@@ -8,6 +8,9 @@ if (Auth::check()) {
 	$isLoggedIn = true;
 }
 
+if (!isset($_SESSION["isLoggedIn"])) {
+	$_SESSION["isLoggedIn"] = false;
+}
 
 
 //toggles the login/logout button
@@ -59,24 +62,6 @@ if ($_SESSION["isLoggedIn"]) {
 					</div>
 				</form>
 			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
-			</div>
-		</div>
-	</div>
-</div>
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Sign up</h4>
-			</div>
-			<div class="modal-body">
-			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			 Sign up
-			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -149,16 +134,20 @@ if ($_SESSION["isLoggedIn"]) {
 	</form>
 
 	<div class="newAdd navbarFormat">
-		<button class="btn btn-default">Create New Ad</button>
+	<?php if ($isLoggedIn): ?>
+		<a href="http://adnormallister.dev/ads.create.php"><button class="btn btn-default">Create New Ad</button></a>
+	<?php else: ?>
+		<a href="http://adnormallister.dev/users.create.php"><button class="btn btn-default">Create New Ad</button></a>
+	<?php endif; ?>
 	</div>
 	<?php if (!$isLoggedIn): ?>
 	<div class="login navbarFormat">
 		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
-		<button class="btn btn-default" data-toggle="modal" data-target="#signupModal">Sign up</button>
+		<a href="http://adnormallister.dev/users.create.php"><button class="btn btn-default">Sign up</button></a>
 	</div>	
 	<?php else: ?>
 	<div class="login navbarFormat">
-		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Logout</button>
+		<a href="http://adnormallister.dev/auth.logout.php"><button class="btn btn-default">Logout</button></a>
 	</div>
 	<?php endif; ?>
 

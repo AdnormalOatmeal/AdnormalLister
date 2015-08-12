@@ -5,10 +5,12 @@ require_once '../bootstrap.php';
 
 
 $user = Input::get("username");
+$firsttime = true;
 
 // is first time?
 if (Input::has("password")) {
 	$password = Input::get("password");
+	$firsttime = false;
 } else {
 	$password = "";
 }
@@ -58,7 +60,9 @@ if (Auth::attempt($password, $user, $dbc)) {
 					<label for="password">Password</label>
 					<input type="password" class="form-control" id="password" name="password">
 				</div>
-				<h6 class="failed">Login Failed</h6>
+				<?php if (!$firsttime) : ?>
+					<h6 class="failed">Login Failed</h6>
+				<?php endif; ?>
 				<div class="form-group">
 					<button class="btn btn-default">Login</button>
 				</div>
