@@ -1,5 +1,5 @@
 <?php
-    require_once 'ads_config.php';
+    require_once '../bootstrap.php';
 
 class Model {
 
