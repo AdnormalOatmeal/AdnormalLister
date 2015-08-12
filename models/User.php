@@ -30,40 +30,48 @@
                         last_name = :last_name,
                         location = :location,
                         email = :email,
-                        organization = :organization
+                        organization = :organizations
                         WHERE id = :id';
+
             $stmt = self::$dbc->prepare($query);
-            $stmt->bindValue(':user_name', $this->attribute['user_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':PASSWORD', $this->attribute['PASSWORD'], PDO::PARAM_STR);
-            $stmt->bindValue(':first_name', $this->attribute['first_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':last_name', $this->attribute['last_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':location', $this->attribute['location'], PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->attribute['email'], PDO::PARAM_STR);
-            $stmt->bindValue(':organization', $this->attribute['organization'], PDO::PARAM_STR);
+
+            $stmt->bindValue(':user_name', $this->attributes['user_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':PASSWORD', $this->attributes['PASSWORD'], PDO::PARAM_STR);
+            $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':location', $this->attributes['location'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':organization', $this->attributes['organization'], PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
+            
             $stmt->execute();
         }
 
         public function insert()
         {
-            $query = 'INSERT INTO users (user_name, PASSWORD, first_name, last_name, location, email, organization) 
-                VALUES (:user_name, :PASSWORD, :first_name, :last_name, :location, :email, :organization)';
+            $query = 'INSERT INTO users
+                    (user_name, PASSWORD, first_name, last_name, location, email, organization) 
+                    VALUES
+                    (:user_name, :PASSWORD, :first_name, :last_name, :location, :email, :organization)';
+
             $stmt = self::$dbc->prepare($query);
-            $stmt->bindValue(':user_name', $this->attribute['user_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':PASSWORD', $this->attribute['PASSWORD'], PDO::PARAM_STR);
-            $stmt->bindValue(':first_name', $this->attribute['first_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':last_name', $this->attribute['last_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':location', $this->attribute['location'], PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->attribute['email'], PDO::PARAM_STR);
-            $stmt->bindValue(':organization', $this->attribute['organization'], PDO::PARAM_STR);
+
+            $stmt->bindValue(':user_name', $this->attributes['user_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':PASSWORD', $this->attributes['PASSWORD'], PDO::PARAM_STR);
+            $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':location', $this->attributes['location'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':organization', $this->attributes['organization'], PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
+            
             $stmt->execute();
         }
 
         public function delete()
         {
             $query = 'DELETE FROM users
-            WHERE id = :id';
+                    WHERE id = :id';
             $stmt = self::$dbc->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -106,5 +114,5 @@
             }
             return $instance;
         }
-
     }
+?>
