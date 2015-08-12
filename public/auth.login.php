@@ -3,11 +3,12 @@
 
 require_once '../bootstrap.php';
 
+
 $user = Input::get("username");
 
 // is first time?
 if (Input::has("password")) {
-	$password = htmlspecialchars(strip_tags($_POST["password"]));
+	$password = Input::get("password");
 } else {
 	$password = "";
 }

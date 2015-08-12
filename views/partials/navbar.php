@@ -1,9 +1,5 @@
 <?php 
 
-session_start();
-$sessionId = session_id();
-$isLoggedIn = false;
-
 
 require_once '../bootstrap.php';
 
@@ -13,13 +9,11 @@ if (Auth::check()) {
 }
 
 
-var_dump($_SESSION["id"]);
 
 //toggles the login/logout button
 if ($_SESSION["isLoggedIn"]) {
 	$isLoggedIn = true;
 } else {
-	var_dump($_SESSION["isLoggedIn"]);
 	$isLoggedIn = false;
 }
 
