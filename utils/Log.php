@@ -13,16 +13,13 @@
 
         protected function setFilename($prefix)
         {
-            if (is_string($prefix))
-            {
+            if (is_string($prefix)) {
                 $this->filename = "log/" . trim($prefix) . "-" . date('Y-m-d') . '.log';
-            } else
-            {
+            } else {
                 die();
             }
 
-            if (!touch($this->filename) && !is_writable($this->filename))
-            {
+            if (!touch($this->filename) && !is_writable($this->filename)) {
                 die();
             }
         }
@@ -57,8 +54,7 @@
 
         public function __destruct ()
         {
-            if (isset($this->handle))
-            {
+            if (isset($this->handle)) {
                 fclose($this->handle);
             }
         }
