@@ -1,3 +1,30 @@
+<?php 
+
+session_start();
+$sessionId = session_id();
+$isLoggedIn = false;
+
+
+require_once '../bootstrap.php';
+
+// check if logged in
+if (Auth::check()) {
+	$isLoggedIn = true;
+}
+
+
+var_dump($_SESSION["id"]);
+
+//toggles the login/logout button
+if ($_SESSION["isLoggedIn"]) {
+	$isLoggedIn = true;
+} else {
+	var_dump($_SESSION["isLoggedIn"]);
+	$isLoggedIn = false;
+}
+
+?>
+
 <style>
 
 .navbarFormat {
@@ -16,7 +43,7 @@
 
 <!-- MODALS -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -24,11 +51,20 @@
 			</div>
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			 Login
+				<form method="POST" action="auth.login.php">
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username" autofocus>
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default">Login</button>
+					</div>
+				</form>
 			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -118,13 +154,19 @@
 		</div>
 	</form>
 
+	<div class="newAdd navbarFormat">
+		<button class="btn btn-default">Create New Ad</button>
+	</div>
+	<?php if (!$isLoggedIn): ?>
 	<div class="login navbarFormat">
 		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
 		<button class="btn btn-default" data-toggle="modal" data-target="#signupModal">Sign up</button>
+	</div>	
+	<?php else: ?>
+	<div class="login navbarFormat">
+		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Logout</button>
 	</div>
-	<div class="newAdd navbarFormat">
-		<button class="btn btn-default">Create New Add</button>
-	</div>
+	<?php endif; ?>
 
 
 	<div class="links">
