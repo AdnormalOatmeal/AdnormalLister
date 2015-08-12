@@ -1,15 +1,12 @@
 <style>
 
-	#header {
-		height: 200px;
-		background-color: red;
-	}
+#header {
+	margin: 25px 0px;
+	text-align: center;
+}
 
 </style>
 
 <div class="container" id="header">
-	<h1 class="text-center">Welcome to AdNormal Oatmeal!</h1>
-
-
-	placeholder for logo
+	<img src="http://adnormallister.dev/img/logo.png">
 </div>
