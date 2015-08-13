@@ -63,7 +63,7 @@
 			<div class="panel-heading">
 				<?= $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"]?>
 				<?php if ($_SESSION["id"] == $id) : ?>
-				<button class="btn btn-default editUser">Edit User</button>
+				<a href="http://adnormallister.dev/users.edit.php?id=<?= $_SESSION["id"] ?>"><button class="btn btn-default editUser">Edit User</button></a>
 				<?php endif; ?>
 			</div>
 			<div class="panel-body">

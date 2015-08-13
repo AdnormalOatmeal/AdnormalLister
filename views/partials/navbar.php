@@ -148,6 +148,7 @@ if ($_SESSION["isLoggedIn"]) {
 	<?php else: ?>
 	<div class="login navbarFormat">
 		<a href="http://adnormallister.dev/auth.logout.php"><button class="btn btn-default">Logout</button></a>
+		<a href="http://adnormallister.dev/users.show.php?id=<?= $_SESSION["id"] ?>"><button class="btn btn-default">Veiw Profile</button></a>
 	</div>
 	<?php endif; ?>
 
