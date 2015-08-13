@@ -14,7 +14,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="css/main.css" rel="stylesheet">
+		<link href="/css/main.css" rel="stylesheet">
 
 		<style type="text/css">
 			.panel {

@@ -4,6 +4,9 @@
 	margin: 25px 0px;
 	text-align: center;
 }
+img	{
+	max-width: 100%;
+}
 
 </style>
 

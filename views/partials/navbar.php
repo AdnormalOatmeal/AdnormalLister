@@ -135,19 +135,20 @@ if ($_SESSION["isLoggedIn"]) {
 
 	<div class="newAdd navbarFormat">
 	<?php if ($isLoggedIn): ?>
-		<a href="http://adnormallister.dev/ads.create.php"><button class="btn btn-default">Create New Ad</button></a>
+		<a href="http://adnormallister.dev/ads/create"><button class="btn btn-default">Create New Ad</button></a>
 	<?php else: ?>
-		<a href="http://adnormallister.dev/users.create.php"><button class="btn btn-default">Create New Ad</button></a>
+		<a href="http://adnormallister.dev/login"><button class="btn btn-default">Create New Ad</button></a>
 	<?php endif; ?>
 	</div>
 	<?php if (!$isLoggedIn): ?>
 	<div class="login navbarFormat">
 		<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
-		<a href="http://adnormallister.dev/users.create.php"><button class="btn btn-default">Sign up</button></a>
+		<a href="http://adnormallister.dev/signup"><button class="btn btn-default">Sign up</button></a>
 	</div>	
 	<?php else: ?>
 	<div class="login navbarFormat">
-		<a href="http://adnormallister.dev/auth.logout.php"><button class="btn btn-default">Logout</button></a>
+		<a href="http://adnormallister.dev/logout"><button class="btn btn-default">Logout</button></a>
+		<a href="http://adnormallister.dev/users/show?id=<?= $_SESSION["id"] ?>"><button class="btn btn-default">Veiw Profile</button></a>
 	</div>
 	<?php endif; ?>
 
@@ -166,5 +167,5 @@ if ($_SESSION["isLoggedIn"]) {
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="#">Adnormal Oatmeal</a>
+	<a class="navbar-brand" href="http://adnormallister.dev">Adnormal Oatmeal</a>
 </div>

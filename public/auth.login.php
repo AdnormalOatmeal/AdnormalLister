@@ -1,5 +1,6 @@
 <?php  
 
+error_reporting(0);
 
 require_once '../bootstrap.php';
 
@@ -39,10 +40,12 @@ if (Auth::attempt($password, $user, $dbc)) {
 		color: #F00;
 	}
 	.panel {
-		width: 40%;
+		width: 300px;
 		margin: 50px auto;
 	}
-
+	.signup {
+		text-align: center;
+	}
 	</style>
 </head>
 <body>
@@ -68,6 +71,9 @@ if (Auth::attempt($password, $user, $dbc)) {
 				</div>
 			</form>
 		</div>
+	</div>
+	<div class="signup">
+		<a href="http://adnormallister.dev/signup">Sign Up</a>
 	</div>
 </body>
 </html>
