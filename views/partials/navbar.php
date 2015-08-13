@@ -35,6 +35,9 @@ if ($_SESSION["isLoggedIn"]) {
 	text-align: center;
 	width: 90%;
 }
+dt {
+	font-weight: bold; 
+}
 
 </style>
 
@@ -61,7 +64,7 @@ if ($_SESSION["isLoggedIn"]) {
 						<button class="btn btn-default">Login</button>
 					</div>
 				</form>
-			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 		</div>
 	</div>
@@ -75,8 +78,25 @@ if ($_SESSION["isLoggedIn"]) {
 			</div>
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			 FAQ
-			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			 <dl>
+				<dt>Q. What is this?</dt>
+				<dd>A. A craigslist clone.... For food</dd>
+				<dt>Q. Why?</dt>
+				<dd>A. Becuase we didn't have a choice. It was an assignment.</dd>
+				<dt>Q. No... Why food?</dt>
+				<dd>A. The world needed an online food ordering service. I mean, who doesn't want to get a squashed pie three weeks after you bought it? Or a homemade bowl of chicken noodle soup thats cold?</dd>
+				<dt>Q. Oh. How do I sell food?</dt>
+				<dd>A. Create a user if you have not already. Then click the "Create Ad" button in the sidebar.</dd>
+				<dt>Q. Can I host a bakesale for my school/scout troop/theater club?</dt>
+				<dd>A. Yes. When you register, you have the option to add an organization. This enables the searching of ads by organization.</dd>
+				<dt>Q. On a different note, who are the sexy beasts who made this wonderful addition to humanity?</dt>
+				<dd>A. If you click the Contact link right next to the FAQ link you clicked to get here, you can find out everything about us.</dd>
+				<dt>Q. What if I have a question that is not covered here?</dt>
+				<dd>A. You suck it up. Like that glorious milkshake you are about to buy.</dd>
+				<dt>Q. No really...</dt>
+				<dd>A. You can hit us up using the info in the contact modal.</dd>
+			</dl>
+			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -93,8 +113,10 @@ if ($_SESSION["isLoggedIn"]) {
 			</div>
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			About
-			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			<p>
+				It was like any other day. Birds flew, dogs barked, and people living in first world nations complained about the 20 foot walk to the refrigerator. But on this normal day, something extraordinary was about to happen. Two students from Codeup were told they had to make a craigslist clone. From this simple assignment came the greatest thing since sliced bread, the ablity to buy sliced bread from complete strangers! After drawing on a whiteboard for about three and a half days, they figured out what they were doing and crafted this gift from above that you see before you. It was great. It still is great. Stop reading and go check it out. No really, go. If you don't know how, click on the FAQ link that was right beside the one that brought you here.
+			</p>
+			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -112,7 +134,7 @@ if ($_SESSION["isLoggedIn"]) {
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
 			Contact
-			<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
