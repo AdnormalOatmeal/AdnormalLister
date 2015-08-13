@@ -14,7 +14,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="css/main.css" rel="stylesheet">
+		<link href="/css/main.css" rel="stylesheet">
 
 		<style type="text/css">
 			td:nth-child(1) {
@@ -25,12 +25,17 @@
 				font-size: 1.2em;
 			}
 			.panel {
+				max-width: 100%;
 				width: 500px;
 				margin: 10px auto;
 			}
 			.editUser {
 				position: relative;
-				left: 265px;
+				top: -5px;
+			}
+			.test {
+				text-align: right;
+				float: right;
 			}
 
 		</style>
@@ -63,7 +68,9 @@
 			<div class="panel-heading">
 				<?= $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"]?>
 				<?php if ($_SESSION["id"] == $id) : ?>
-				<button class="btn btn-default editUser">Edit User</button>
+				<div class="test">
+				<a href="http://adnormallister.dev/users/edit?id=<?= $_SESSION["id"] ?>"><button class="btn btn-default editUser">Edit User</button></a>
+				</div>
 				<?php endif; ?>
 			</div>
 			<div class="panel-body">
