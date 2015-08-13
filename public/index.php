@@ -6,7 +6,7 @@
 	
 	$ads = $ads->attributes;
 
-	arsort($ads);
+	asort($ads);
 
 	$featuredAds[] = array_pop($ads);
 	$featuredAds[] = array_pop($ads);

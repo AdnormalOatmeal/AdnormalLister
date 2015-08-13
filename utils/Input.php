@@ -27,7 +27,7 @@ class Input
     public static function getString($key, $min = 1, $max = 255)
     {
         $value = trim(static::get($key));
-
+        
         if (!is_string($key)) {
             throw new InvalidArgumentException("$key must be a string");
         }
