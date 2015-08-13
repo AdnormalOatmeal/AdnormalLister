@@ -167,5 +167,5 @@ if ($_SESSION["isLoggedIn"]) {
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="#">Adnormal Oatmeal</a>
+	<a class="navbar-brand" href="http://adnormallister.dev">Adnormal Oatmeal</a>
 </div>
