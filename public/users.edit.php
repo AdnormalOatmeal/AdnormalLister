@@ -14,7 +14,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="css/main.css" rel="stylesheet">
+		<link href="/css/main.css" rel="stylesheet">
 
 		<style type="text/css">
 			td:nth-child(1) {
@@ -25,12 +25,9 @@
 				font-size: 1.2em;
 			}
 			.panel {
+				max-width: 100%;
 				width: 500px;
 				margin: 10px auto;
-			}
-			.editUser {
-				position: relative;
-				left: 265px;
 			}
 
 		</style>
@@ -103,7 +100,7 @@
 						<input type="text" class="form-control" id="organization" name="organization"value="<?= $currentUser->attributes[0]["organization"] ?>" >
 					</div>
 					<div class="form-group">
-						<button class="btn btn-default signup">Sign Up</button>
+						<button class="btn btn-default save">save</button>
 					</div>
 				</form>
 			</div>

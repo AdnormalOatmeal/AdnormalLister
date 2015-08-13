@@ -18,13 +18,16 @@ switch ($frontController[0]) {
 	case '/login':
 		include 'auth.login.php';
 		break;
-	case '/user/create':
+	case '/logout':
+		include 'auth.logout.php';
+		break;
+	case '/signup':
 		include 'users.create.php';
 		break;
-	case '/user/edit':
+	case '/users/edit':
 		include 'users.edit.php';
 		break;
-	case '/user/show':
+	case '/users/show':
 		include 'users.show.php';
 		break;
 	default:
