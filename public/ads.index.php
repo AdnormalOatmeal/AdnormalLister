@@ -48,7 +48,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>AdNormal Oatmeal - View All Posts</title>
+    <title>View All Posts - AdNormal Oatmeal</title>
 
     <!-- Bootstrap core CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">

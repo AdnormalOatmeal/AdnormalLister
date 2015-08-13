@@ -7,7 +7,7 @@
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-		<title>Navmenu Template for Bootstrap</title>
+		<title>View/Edit Users - AdNormal Oatmeal</title>
 
 		<!-- Bootstrap core CSS -->
   		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
