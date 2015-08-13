@@ -49,15 +49,15 @@
         public function insert()
         {
             $query = 'INSERT INTO ads
-                    (title, price, image_url, post_date, sale_end_date, categories, description, user_id)
+                    (title, image_url, price, post_date, sale_end_date, categories, description, user_id)
                     VALUES
-                    (:title, :price, :image_url, :post_date, :sale_end_date, :categories, :description, :user_id)';
+                    (:title, :image_url, :price, :post_date, :sale_end_date, :categories, :description, :user_id)';
 
             $stmt = self::$dbc->prepare($query);
 
             $stmt->bindValue(':title', $this->attributes['title'], PDO::PARAM_STR);
-            $stmt->bindValue(':price', $this->attributes['price'], PDO::PARAM_INT);
             $stmt->bindValue(':image_url', $this->attributes['image_url'], PDO::PARAM_STR);
+            $stmt->bindValue(':price', $this->attributes['price'], PDO::PARAM_INT);
             $stmt->bindValue(':post_date', $this->attributes['post_date'], PDO::PARAM_STR);
             $stmt->bindValue(':sale_end_date', $this->attributes['sale_end_date'], PDO::PARAM_STR);
             $stmt->bindValue(':categories', $this->attributes['categories'], PDO::PARAM_STR);

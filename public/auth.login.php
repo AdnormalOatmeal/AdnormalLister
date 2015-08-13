@@ -31,7 +31,7 @@ if (Auth::attempt($password, $user, $dbc)) {
 
 <html>
 <head>
-	<title>Login</title>
+	<title>Login - AdNormal Oatmeal</title>
 	<!-- Bootstrap -->
   		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<style>
