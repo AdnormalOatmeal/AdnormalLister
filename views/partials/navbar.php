@@ -38,6 +38,14 @@ if ($_SESSION["isLoggedIn"]) {
 dt {
 	font-weight: bold; 
 }
+#timothy {
+	float: left;
+	width: 50%;
+}
+#tarek {
+	float: left;
+	width: 50%;
+}
 
 </style>
 
@@ -133,7 +141,18 @@ dt {
 			</div>
 			<div class="modal-body">
 			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-			Contact
+			<div class="container">
+				<div id="timothy">
+					<h4>Lead Developer</h4>
+					<h5>Timothy Birrell</h5>
+					tbirrell@mastersolutions.biz
+				</div>
+				<div id="tarek">
+					<h4>Other Lead Developer</h4>
+					<h5>Tarek Hafec</h5>
+					thafez@ymail.com
+				</div>
+			</div>
 			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
 			</div>
 			<div class="modal-footer">
@@ -146,7 +165,7 @@ dt {
 <!-- NAVBAR -->
 <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm container">
 	<a class="navmenu-brand visible-md visible-lg" href="http://adnormallister.dev">Adnormal Oatmeal</a>
-	<form class="form-inline navbarFormat">
+	<form class="form-inline navbarFormat" action="http://adnormallister.dev/ads">
 		<div class="form-group">
 			<input type="text" class="form-control" id="search" placeholder="Search..." style="width: 225px;">
 		</div>
