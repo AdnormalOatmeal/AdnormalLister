@@ -7,6 +7,7 @@
 
 	$userId = $currentAd->attributes[0]["user_id"];
 	$currentUser = User::find($userId);
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +58,7 @@
 					<h2>
 						<?= $currentAd->attributes[0]["title"] ?>
 						<?php if ($_SESSION["id"] == $userId) : ?>
-							<a href="http://adnormallister.dev/ads/edit?id=<?= $currentUser->attributes[0]["id"] ?>"><button class="btn btn-default editUser">Edit Ad</button></a>
+							<a href="http://adnormallister.dev/ads/edit?id=<?= $currentAd->attributes[0]["id"] ?>"><button class="btn btn-default editUser">Edit Ad</button></a>
 						<?php endif; ?>
 					</h2>
 				</div>
@@ -89,7 +90,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-4">
-						<img class="img-thumbnail" src="http://adnormallister.dev/img/uploads/yakisoba.jpg">
+						<img class="img-thumbnail" src="http://adnormallister.dev/<?= $currentAd->attributes[0]["image_url"] ?>">
 					</div>
 				</div>
 				<div class="row">
