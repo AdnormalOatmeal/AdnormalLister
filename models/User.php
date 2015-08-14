@@ -62,7 +62,6 @@
             $stmt->bindValue(':location', $this->attributes['location'], PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
             $stmt->bindValue(':organization', $this->attributes['organization'], PDO::PARAM_STR);
-            $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
             
             $stmt->execute();
         }

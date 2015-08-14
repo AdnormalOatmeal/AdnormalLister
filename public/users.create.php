@@ -1,3 +1,7 @@
+<?php
+	require_once '../bootstrap.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -37,19 +41,18 @@
 		<?php  
 
 		if (Input::has("username")) {
-			$insertUsers = "INSERT INTO users (user_name, PASSWORD, first_name, last_name, location, email, organization) VALUES (:user_name, :PASSWORD, :first_name, :last_name, :location, :email, :organization)";
 
-			$stmt = $dbc->prepare($insertUsers);
+			$user = new User();
 
-			$stmt->bindValue(':user_name', Input::get('username'), PDO::PARAM_STR);
-			$stmt->bindValue(':PASSWORD', password_hash(Input::get('passwrd'), PASSWORD_DEFAULT), PDO::PARAM_STR);
-			$stmt->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':last_name', Input::get('last_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':location', Input::get('location'), PDO::PARAM_STR);
-			$stmt->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
-			$stmt->bindValue(':organization', Input::get('organization'), PDO::PARAM_STR);
+			$user->user_name = Input::get('username');
+			$user->PASSWORD = password_hash(Input::get('passwrd'), PASSWORD_DEFAULT);
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->location = Input::get('location');
+			$user->email = Input::get('email');
+			$user->organization = Input::get('organization');
 
-			$stmt->execute();
+			$user->save();
 		}
 
 

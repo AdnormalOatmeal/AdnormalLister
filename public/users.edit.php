@@ -1,3 +1,28 @@
+<?php 
+	require_once '../bootstrap.php';
+
+	if (Input::has("username")) {
+	$user = new User();
+
+	$user->user_name = Input::get('username');
+	$user->first_name = Input::get('first_name');
+	$user->last_name = Input::get('last_name');
+	$user->location = Input::get('location');
+	$user->email = Input::get('email');
+	$user->organization = Input::get('organization');
+	$user->id = $_SESSION['id'];
+
+	$user->save();
+	}
+
+	$id = $_GET["id"]; 
+	if ($_SESSION["id"] != $id) {
+	$id = $_SESSION["id"];
+	}
+	$user = new User();
+	$currentUser = $user->find($id);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -43,35 +68,6 @@
 		<?php require_once '../views/partials/header.php'; ?>
 		<!--===-->
 		<!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-		<?php 
-
-		require_once '../models/User.php';
-		
-
-		if (Input::has("username")) {
-			$insertUsers = "UPDATE users SET user_name = :user_name, first_name = :first_name, last_name = :last_name, location = :location, email = :email, organization = :organization WHERE id = :id";
-
-			$stmt = $dbc->prepare($insertUsers);
-
-			$stmt->bindValue(':user_name', Input::get('username'), PDO::PARAM_STR);
-			$stmt->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':last_name', Input::get('last_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':location', Input::get('location'), PDO::PARAM_STR);
-			$stmt->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
-			$stmt->bindValue(':organization', Input::get('organization'), PDO::PARAM_STR);
-			$stmt->bindValue(':id', $_SESSION["id"], PDO::PARAM_STR);
-
-			$stmt->execute();
-		}
-
-		$id = $_GET["id"]; 
-		if ($_SESSION["id"] != $id) {
-			$id = $_SESSION["id"];
-		}
-		$user = new User();
-		$currentUser = $user->find($id);
-
-		?>
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<form method="POST">
