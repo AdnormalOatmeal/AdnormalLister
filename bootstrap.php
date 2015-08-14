@@ -10,3 +10,4 @@ require_once '../database/ads_config.php';
 require_once '../database/db_connect.php';
 require_once '../models/BaseModel.php';
 require_once '../models/Ad.php';
+require_once '../models/User.php';

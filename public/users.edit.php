@@ -1,3 +1,38 @@
+<?php 
+	require_once '../bootstrap.php';
+
+	$id = $_GET["id"]; 
+	
+	if ($_SESSION["id"] != $id) {
+		$id = $_SESSION["id"];
+	}
+	
+	$currentUser = User::find($id);
+	
+	if (Input::has("username")) {
+		$user = new User();
+
+		$user->user_name = Input::get('username');
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->location = Input::get('location');
+		$user->email = Input::get('email');
+		$user->organization = Input::get('organization');
+		$user->id = $_SESSION['id'];
+
+		$user->save();
+	}
+
+	if (Input::has('password')) {
+		$user = new User();
+
+		$user->PASSWORD = password_hash(Input::get('password'), PASSWORD_DEFAULT);
+		$user->id = $_SESSION['id'];
+
+		$user->updatePassword();	
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -30,6 +65,16 @@
 				margin: 10px auto;
 			}
 
+			#passwordModal {
+				position: relative;
+				top: -5px;
+			}
+			
+			.test {
+				text-align: right;
+				float: right;
+			}
+
 		</style>
 	</head>
 
@@ -43,36 +88,43 @@
 		<?php require_once '../views/partials/header.php'; ?>
 		<!--===-->
 		<!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-		<?php 
-
-		require_once '../models/User.php';
-		
-
-		if (Input::has("username")) {
-			$insertUsers = "UPDATE users SET user_name = :user_name, first_name = :first_name, last_name = :last_name, location = :location, email = :email, organization = :organization WHERE id = :id";
-
-			$stmt = $dbc->prepare($insertUsers);
-
-			$stmt->bindValue(':user_name', Input::get('username'), PDO::PARAM_STR);
-			$stmt->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':last_name', Input::get('last_name'), PDO::PARAM_STR);
-			$stmt->bindValue(':location', Input::get('location'), PDO::PARAM_STR);
-			$stmt->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
-			$stmt->bindValue(':organization', Input::get('organization'), PDO::PARAM_STR);
-			$stmt->bindValue(':id', $_SESSION["id"], PDO::PARAM_STR);
-
-			$stmt->execute();
-		}
-
-		$id = $_GET["id"]; 
-		if ($_SESSION["id"] != $id) {
-			$id = $_SESSION["id"];
-		}
-		$user = new User();
-		$currentUser = $user->find($id);
-
-		?>
+		<div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Update Password</h4>
+					</div>
+					<div class="modal-body">
+					<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
+						<form method="POST">
+							<div class="form-group">
+								<label for="passwrd">Enter Password</label>
+								<input type="password" class="form-control" id="passwrd" name="passwrd" autofocus>
+							</div>
+							<div class="form-group">
+								<label for="passwordComfirm">Confirm Password</label>
+								<input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-default" id="updatePassword">Update Password</button>
+							</div>
+						</form>
+					<!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<?= "Edit " . $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"] . "'s Profile" ?>
+				<div class="test">
+					<div class="form-group">
+						<label for="passworModal" class="sr-only">Click To Update Password</label>
+						<button class="btn btn-default" id='passwordModal' data-toggle="modal" data-target="#passwordChangeModal">Update Password</button>
+					</div>
+				</div>
+			</div>
 			<div class="panel-body">
 				<form method="POST">
 					<div class="form-group">
@@ -100,7 +152,7 @@
 						<input type="text" class="form-control" id="organization" name="organization"value="<?= $currentUser->attributes[0]["organization"] ?>" >
 					</div>
 					<div class="form-group">
-						<button class="btn btn-default save">save</button>
+						<button class="btn btn-default save">Save Changes</button>
 					</div>
 				</form>
 			</div>
@@ -113,5 +165,16 @@
 		<!-- Note: Includes JS -->
 		<?php require_once '../views/partials/footer.php'; ?>
 		<!--===-->
+		<script>
+		$("#updatePassword").click(function(evt) {
+			var fPass = $("#passwrd");
+			var cPass = $("#passwordConfirm");
+			if (fPass.val() != cPass.val()) {
+				alert("Passwords do not match");
+				evt.preventDefault();
+			}
+		})
+		</script>
+</html>
 	</body>
 </html>
