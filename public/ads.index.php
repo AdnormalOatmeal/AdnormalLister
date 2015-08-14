@@ -1,6 +1,7 @@
 <?php
     require_once '../bootstrap.php';
 
+
     // start of display and pagination logic
     $limit = 12; 
     $offset = 0;
@@ -22,16 +23,29 @@
         header("Location: ?page=$totalPages");
         exit();
     }
+    // if (Input::has("column")) {
+    //     $column = Input::get("column");
+    // } else {
+    //     $column = "title";
+    // }
 
-    $query = 'SELECT * FROM ads LIMIT :limit OFFSET :offset';
+    if (Input::has("q")) {
+        $q = Input::get("q");
+    } else {
+        $q = "%";
+    }
+
+    $query = "SELECT * FROM ads WHERE title LIKE '%' || :q || '%' LIMIT :limit OFFSET :offset";
 
     $stmt = $dbc->prepare($query);
-    $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // $stmt->bindValue(':column', $column, PDO::PARAM_STR);
+    $stmt->bindValue(':q', $q, PDO::PARAM_STR);
     $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    
     $stmt->execute();
+
 
     $ads = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // end of display and pagination logic
@@ -61,6 +75,9 @@
             .thing {
                 font-size: 1.2em;
             }
+            .ads {
+                width: ;
+            }
         </style>
 </head>
 <body>
@@ -71,47 +88,49 @@
     <div class="container">
     <!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
         <!-- NAVBAR -->
+        <div class="container">
         <?php require_once '../views/partials/header.php'; ?>
         <!--===-->
-        <?php foreach ($ads as $key => $ad): ?>
-            <div class="container col-sm-6 col-md-4">
-                        
-                <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
-                <h2><?= $ad['title']; ?></h2>
-                <!-- END HEADER LINK -->
-                
-                <img src="<?= $ad['image_url']; ?>" class="linked-images">
-                <p class="thing">
-                <strong>Price: </strong>$<?= $ad['price']; ?> <br>
-                <strong>Categories: </strong><?= $ad['categories']; ?> <br>
-                <strong>Date Created: </strong><?= $ad['post_date']; ?><br>
-                </p>
-            </div>
-        <?php endforeach; ?>
+            <?php foreach ($ads as $key => $ad): ?>
+                <div class="container col-sm-6 col-md-4">
+                            
+                    <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
+                    <h2><?= $ad['title']; ?></h2>
+                    <!-- END HEADER LINK -->
+                    
+                    <img src="<?= $ad['image_url']; ?>" class="linked-images">
+                    <p class="thing">
+                    <strong>Price: </strong>$<?= $ad['price']; ?> <br>
+                    <strong>Categories: </strong><?= $ad['categories']; ?> <br>
+                    <strong>Date Created: </strong><?= $ad['post_date']; ?><br>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        </div>
         <!-- PAGINATION STARTS -->
 
         <div class="container text-center">
-            <a class='btn btn-danger' href="?page=1">First Page</a>
+            <a class='btn btn-danger' href="?q=<?= $q ?>&page=1">First Page</a>
 
             <?php if ($page != 1): ?>
-                <a class='btn btn-danger' href="?page=<?= $page - 1; ?>">Previous</a>
+                <a class='btn btn-danger' href="?q=<?= $q ?>&page=<?= $page - 1; ?>">Previous</a>
             <?php endif; ?>
 
                 <span> - </span>
 
             <?php for ($i = 1; $i <= $totalPages; $i += 1) { ?>
                 <?php if ($i > ($_GET['page'] - 3) && $i < ($_GET['page'] + 3)) : ?>
-                    <a class='btn btn-danger' href="?page=<?= $i ?>"><?= $i ?></a>
+                    <a class='btn btn-danger' href="?q=<?= $q ?>&page=<?= $i ?>"><?= $i ?></a>
                 <?php endif; ?>
             <?php } ?>
 
                 <span> - </span>
 
             <?php if ($page < $totalPages): ?>
-                <a class='btn btn-danger' href="?page=<?= $page + 1; ?>">Next</a>
+                <a class='btn btn-danger' href="?q=<?= $q ?>&page=<?= $page + 1; ?>">Next</a>
             <?php endif; ?>
 
-            <a class='btn btn-danger' href="?page=<?= $totalPages ?>">Last Page</a>
+            <a class='btn btn-danger' href="?q=<?= $q ?>&page=<?= $totalPages ?>">Last Page</a>
         </div>
         <!-- PAGINATION ENDS -->
     <!-- END OF PAGE BODY. DO NOT PUT CUSTOM CODE AFTER HERE -->
