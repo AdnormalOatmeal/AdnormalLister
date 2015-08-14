@@ -184,7 +184,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Enter a short description for your ad: <small>(Description must be 1000 characters or less.)</small></label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <textarea class="form-control" rows="8" name="description" id="description" required></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-default">Submit</button>

@@ -89,7 +89,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-4">
-						<img class="img-thumbnail" src="http://adnormallister.dev/img/yakisoba.jpg">
+						<img class="img-thumbnail" src="http://adnormallister.dev/img/uploads/yakisoba.jpg">
 					</div>
 				</div>
 				<div class="row">

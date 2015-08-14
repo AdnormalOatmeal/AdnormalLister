@@ -7,7 +7,7 @@ switch ($frontController[0]) {
 		include 'ads.create.php';
 		break;
 	case '/ads/edit':
-		include 'ads.edit.php ';
+		include 'ads.edit.php';
 		break;
 	case '/ads':
 		include 'ads.index.php';

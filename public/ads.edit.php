@@ -17,6 +17,9 @@
         $ad->id = $id;
 
         $ad->save();
+
+        header("Location: /ads/edit?id=" . $id);
+        exit();
     }
 ?>
 <!DOCTYPE html>
@@ -86,12 +89,12 @@
                             <option disabled></option>
                             <option disabled>----------------------</option>
                             <option disabled></option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="second_breakfast">Second Breakfast</option>
-                            <option value="elevensies">Elevensies</option>
-                            <option value="luncheon">Luncheon</option>
-                            <option value="afternoon_tea">Afternoon Tea</option>
-                            <option value="supper">Supper</option>
+                            <option value="breakfast" <?= ($currentAd->attributes[0]['categories'] == "breakfast") ? 'selected' : ''; ?>>Breakfast</option>
+                            <option value="second_breakfast" <?= ($currentAd->attributes[0]['categories'] == "second_breakfast") ? 'selected' : ''; ?>>Second Breakfast</option>
+                            <option value="elevensies" <?= ($currentAd->attributes[0]['categories'] == "elevensies") ? 'selected' : ''; ?>>Elevensies</option>
+                            <option value="luncheon" <?= ($currentAd->attributes[0]['categories'] == "luncheon") ? 'selected' : ''; ?>>Luncheon</option>
+                            <option value="afternoon_tea" <?= ($currentAd->attributes[0]['categories'] == "afternoon_tea") ? 'selected' : ''; ?>>Afternoon Tea</option>
+                            <option value="supper" <?= ($currentAd->attributes[0]['categories'] == "supper") ? 'selected' : ''; ?>>Supper</option>
                         </select>
                     </div>
                     <div class="form-group">
