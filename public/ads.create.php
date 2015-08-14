@@ -1,8 +1,6 @@
 <?php
     require_once '../bootstrap.php';
-
- 
-
+    
     // Authenticating Data from Input form in ads.create.php
     $errors = array();
 
