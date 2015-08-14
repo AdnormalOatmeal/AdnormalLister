@@ -1,7 +1,23 @@
-<?php
+<?php  
 	require_once '../bootstrap.php';
-?>
 
+	if (Input::has("username")) {
+
+		$user = new User();
+
+		$user->user_name = Input::get('username');
+		$user->PASSWORD = password_hash(Input::get('passwrd'), PASSWORD_DEFAULT);
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->location = Input::get('location');
+		$user->email = Input::get('email');
+		$user->organization = Input::get('organization');
+
+		$user->save();
+	}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -38,25 +54,6 @@
 		<?php require_once '../views/partials/header.php'; ?>
 		<!--===-->
 		<!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-		<?php  
-
-		if (Input::has("username")) {
-
-			$user = new User();
-
-			$user->user_name = Input::get('username');
-			$user->PASSWORD = password_hash(Input::get('passwrd'), PASSWORD_DEFAULT);
-			$user->first_name = Input::get('first_name');
-			$user->last_name = Input::get('last_name');
-			$user->location = Input::get('location');
-			$user->email = Input::get('email');
-			$user->organization = Input::get('organization');
-
-			$user->save();
-		}
-
-
-		?>
 
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -112,12 +109,11 @@
 		$(".signup").click(function(evt) {
 			var fPass = $("#passwrd");
 			var cPass = $("#confirmPass");
-			console.log("first " + fPass.val());
-			console.log("confirm " + cPass.val());
 			if (fPass.val() != cPass.val()) {
 				alert("Passwords do not match");
 				evt.preventDefault();
 			}
 		})
 		</script>
+	</body>
 </html>

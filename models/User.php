@@ -24,18 +24,16 @@
             $query = 'UPDATE users 
                         SET 
                         user_name = :user_name,
-                        PASSWORD = :PASSWORD,
                         first_name = :first_name,
                         last_name = :last_name,
                         location = :location,
                         email = :email,
-                        organization = :organizations
+                        organization = :organization
                         WHERE id = :id';
 
             $stmt = self::$dbc->prepare($query);
 
             $stmt->bindValue(':user_name', $this->attributes['user_name'], PDO::PARAM_STR);
-            $stmt->bindValue(':PASSWORD', $this->attributes['PASSWORD'], PDO::PARAM_STR);
             $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
             $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
             $stmt->bindValue(':location', $this->attributes['location'], PDO::PARAM_STR);
@@ -43,6 +41,19 @@
             $stmt->bindValue(':organization', $this->attributes['organization'], PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
             
+            $stmt->execute();
+        }
+
+        public function updatePassword()
+        {
+            $query = 'UPDATE users
+                        SET PASSWORD = :PASSWORD WHERE id = :id';
+
+            $stmt = self::$dbc->prepare($query);
+
+            $stmt->bindValue(':PASSWORD', $this->attributes['PASSWORD'], PDO::PARAM_STR);
+            $stmt->bindValue('id', $this->attributes['id'], PDO::PARAM_INT);
+
             $stmt->execute();
         }
 

@@ -24,24 +24,19 @@
                         SET
                         title = :title,
                         price = :price,
-                        image_url = :image_url,
-                        post_date = :post_date,
                         sale_end_date = :sale_end_date,
                         categories = :categories,
-                        description = :description,
-                        user_id = :user_id
+                        description = :description
                         WHERE id = :id';
 
             $stmt = self::$dbc->prepare($query);
 
             $stmt->bindValue(':title', $this->attributes['title'], PDO::PARAM_STR);
             $stmt->bindValue(':price', $this->attributes['price'], PDO::PARAM_INT);
-            $stmt->bindValue(':image_url', $this->attributes['image_url'], PDO::PARAM_STR);
-            $stmt->bindValue(':post_date', $this->attributes['post_date'], PDO::PARAM_STR);
             $stmt->bindValue(':sale_end_date', $this->attributes['sale_end_date'], PDO::PARAM_STR);
             $stmt->bindValue(':categories', $this->attributes['categories'], PDO::PARAM_STR);
             $stmt->bindValue(':description', $this->attributes['description'], PDO::PARAM_STR);
-            $stmt->bindValue(':user_id', $this->attributes['user_id'], PDO::PARAM_INT);
+            $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
 
             $stmt->execute();
         }
