@@ -38,6 +38,9 @@ if ($_SESSION["isLoggedIn"]) {
 dt {
 	font-weight: bold; 
 }
+dd {
+	margin-bottom: 5px;
+}
 #timothy {
 	float: left;
 	width: 50%;
@@ -50,6 +53,40 @@ dt {
 </style>
 
 <!-- MODALS -->
+<div class="modal fade" id="aSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Advanced Search</h4>
+			</div>
+			<div class="modal-body">
+			<!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
+			<form action="http://adnormallister.dev/ads">
+				<div class="form-group">
+					<select class="form-control" name="column">
+						<option>Search By</option>
+						<option value="title">Title</option>
+						<option value="price">Price</option>
+						<option value="catagories">Catagories</option>
+						<option value="description">Desciption</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="search" placeholder="Search...">
+				</div>
+				<div class="form-group searchBtn">
+					<button class="btn btn-default theBtn"><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+			</form>
+			<!-- END OF MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
@@ -173,7 +210,9 @@ dt {
 			<button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 		</div>
 	</form>
-
+	<div class="aSearch navbarFormat">
+		<button class="btn btn-default" data-toggle="modal" data-target="#aSearchModal">Advanced Search</button>
+	</div>
 	<div class="newAdd navbarFormat">
 	<?php if ($isLoggedIn): ?>
 		<a href="http://adnormallister.dev/ads/create"><button class="btn btn-default">Create New Ad</button></a>
