@@ -40,6 +40,11 @@
 			.thing {
 				font-size: 1.2em;
 			}
+
+			.linked-images {
+                max-width: 150px;
+                max-height: 150px;
+            }
 		</style>
 	</head>
 
@@ -58,12 +63,13 @@
 			<h1>Featured Ads</h1>
 				<?php foreach ($featuredAds as $ad): ?>
 					<div class="container col-sm-6 col-md-4">
-						
-						<!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
-						<h2><?= $ad['title']; ?></h2>
-						<!-- END HEADER LINK -->
-						
-						<img src="<?= $ad['image_url']; ?>" class="linked-images">
+						<a href="/ads/show?id=<?= $ad['id']; ?>">
+		                <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
+		                <h2><?= $ad['title']; ?></h2>
+		                <!-- END HEADER LINK -->
+		                
+		                <img src="<?= $ad['image_url']; ?>" class="linked-images img-thumbnail">
+		                </a>
 						<p class="thing">
 						<strong>Price: </strong>$<?= $ad['price']; ?> <br>
 						<strong>Description: </strong><?= $ad['description']; ?><br>

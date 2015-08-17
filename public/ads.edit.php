@@ -18,7 +18,7 @@
 
         $ad->save();
 
-        header("Location: /ads/edit?id=" . $id);
+        header("Location: /ads/show?id=" . $id);
         exit();
     }
 ?>

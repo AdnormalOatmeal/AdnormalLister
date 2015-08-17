@@ -4,8 +4,9 @@
     // Authenticating Data from Input form in ads.create.php
     $errors = array();
 
-    if (!empty($_POST))
-    {
+    if (!empty($_POST)) {
+
+
         try {
             $title = Input::getString('title', 1, 255);
         } catch (InvalidArguementException $e) {
@@ -17,7 +18,7 @@
         } catch (LengthException $e) {
             $errors[] = $e->getMessage();
         }
-
+        
         try {
             $price = Input::getNumber('price');
         } catch (InvalidArguementException $e) {
@@ -30,7 +31,8 @@
             $errors[] = $e->getMessage();
         }
 
-        if($_FILES) {
+        if ($_FILES) {
+
             $uploadsDirectory = 'img/uploads/';
 
             $filename = $uploadsDirectory . basename($_FILES['image_url']['name']);
@@ -88,7 +90,133 @@
 
             $ad->save();            
         }
+
     }
+    
+    if ($_FILES) {
+
+        $uploadsDirectory = 'csv/';
+
+        $filepath = $uploadsDirectory . basename($_FILES['csv_upload']['name']);
+
+        if (!move_uploaded_file($_FILES['csv_upload']['tmp_name'], $filepath)) {
+
+            $errors[] = "Sorry, there was an error uploading your file.";  
+        }
+
+        if ($handle = fopen($filepath, "r")) {
+            
+            $ad = new Ad();
+
+            $headers = fgetcsv($handle, '0', ',');
+
+            if (count($headers) === 6) {
+                if (strtolower($headers[0]) == 'title' &&
+                    strtolower($headers[1]) === 'price' &&
+                    strtolower($headers[2]) == 'image' &&
+                    strtolower($headers[3]) == 'sale end date' &&
+                    strtolower($headers[4]) == 'category' &&
+                    strtolower($headers[5]) == 'description') {
+
+                    while (($bulkAds = fgetcsv($handle, '100', ',')) !== false) {
+                            
+                        try {
+                            $bulkTitle = Input::getString($bulkAds[0]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkPrice = Input::getNumber($bulkAds[1]);    
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (RangeException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkImage = Input::getString($bulkAds[2]);      
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+
+                        try {
+                            $bulkEndDate = Input::getDate($bulkAds[3]);
+                        } catch (Exception $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try{
+                            $bulkCategory = Input::getString($bulkAds[4]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkDescription = Input::getString($bulkAds[5]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+
+
+                        if (empty($errors)) {
+                            $ad->title = $bulkTitle;
+                            $ad->price =$bulkPrice;
+                            $ad->image_url = $bulkImage;
+                            $postDate = date('Y-m-d');
+                            $ad->post_date = $postDate;
+                            $ad->sale_end_date = $bulkEndDate;
+                            $ad->categories = $bulkCategory;
+                            $ad->description = $bulkDescription;
+                            $ad->user_id = $_SESSION['id'];
+
+                            $ad->save();
+
+                        }
+                    }
+
+                } else {
+
+                    $errors[] = "Sorry, there was an error uploading your file.";
+                    $errors[] = "Please verify that your header line is formatted to: Title, Price, Image, Sale End Date, Category, Description. Not Case Sensitive.";
+                }
+            } else {
+                $errors[] = "Sorry, there was an error uploading your file.";
+                $errors[] = "Please verify that your header file includes a total of six columns formatted to: Title, Price, Image, Sale End Date, Category, Description. Not Case Sensitive.";
+            }
+        }
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -136,19 +264,39 @@
         <?php require_once '../views/partials/header.php'; ?>
         <!--===-->
         <!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-        
-        
-            <?php foreach ($errors as $key => $error) : ?>
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                    <?= $error; ?>
+        <div class="modal fade" id="bulk_file_upload_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Upload Bulk CSV File <br> <small>100 Rows or Less</small></h4>
+                    </div>
+                    <div class="modal-body">
+                    <!-- BEGINNING OF MODAL BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
+                        <form method="POST" action="/ads.create.php" enctype="multipart/form-data" id="csv">
+                            <div class="form-group">
+                                <label for="csv_upload">Upload Bulk CSV File</label>
+                                <input type="file" id="csv_upload" name="csv_upload">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" id="bulk_upload">Bulk Upload</button>
+                            </div>
+                        </form>
+                    <!-- END OF PAGE MODAL. DO NOT PUT CUSTOM CODE AFTER HERE -->
                     </div>
                 </div>
-            <?php endforeach ?>
+            </div>
+        </div>
         
+        <?php foreach ($errors as $key => $error) : ?>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                <?= $error; ?>
+                </div>
+            </div>
+        <?php endforeach ?>        
 
         <div class="panel panel-default">
-
             <div class="panel-body">
                 <form method="POST" action="ads.create.php" enctype="multipart/form-data">
                     <div class="form-group">
@@ -190,6 +338,12 @@
                         <button class="btn btn-default">Submit</button>
                     </div>
                 </form>
+                <div class="test">
+                    <div class="form-group">
+                        <label for="csv_upload_link" class="sr-only">Click to upload a bulk CSV File</label>
+                        <a id='csv_upload_link' data-toggle="modal" data-target="#bulk_file_upload_modal">Upload Bulk CSV File</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -199,5 +353,10 @@
         <!-- Note: Includes JS -->
         <?php require_once '../views/partials/footer.php'; ?>
         <!--===-->
+        <script type="text/javascript">
+            $('#bulk_upload').on('click', function(e) { $(e).submit() });
+
+
+        </script>
     </body>
 </html>
