@@ -73,7 +73,7 @@ dd {
 					</select>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" id="search" placeholder="Search...">
+					<input type="text" name="q" class="form-control" id="search" placeholder="Search...">
 				</div>
 				<div class="form-group searchBtn">
 					<button class="btn btn-default theBtn"><span class="glyphicon glyphicon-search"></span></button>
@@ -202,17 +202,17 @@ dd {
 <!-- NAVBAR -->
 <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm container">
 	<a class="navmenu-brand visible-md visible-lg" href="http://adnormallister.dev">Adnormal Oatmeal</a>
-	<form class="form-inline navbarFormat" action="http://adnormallister.dev/ads">
+	<form class="form-inline navbarFormat" method="GET" action="/ads">
 		<div class="form-group">
-			<input type="text" class="form-control" id="search" placeholder="Search..." style="width: 225px;">
+			<input type="text" name="q" class="form-control" id="search" placeholder="Search..." style="width: 225px;">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 		</div>
 	</form>
-	<div class="aSearch navbarFormat">
+	<!-- <div class="aSearch navbarFormat">
 		<button class="btn btn-default" data-toggle="modal" data-target="#aSearchModal">Advanced Search</button>
-	</div>
+	</div> -->
 	<div class="newAdd navbarFormat">
 	<?php if ($isLoggedIn): ?>
 		<a href="http://adnormallister.dev/ads/create"><button class="btn btn-default">Create New Ad</button></a>

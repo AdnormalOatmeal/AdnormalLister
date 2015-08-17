@@ -106,20 +106,114 @@
 
         if ($handle = fopen($filepath, "r")) {
             
-            // fgetcsv($handle, '0', ',');
+            $ad = new Ad();
 
-            while (($bulkAds = fgetcsv($handle, '100', ',')) !== false) {
-                foreach ($bulkAds as $key => $bulkAd) {
-                    print_r($bulkAd);
-                    // $ad = new Ad();
+            $headers = fgetcsv($handle, '0', ',');
 
-                    // $ad->title = 
-                    
+            if (count($headers) === 6) {
+                if (strtolower($headers[0]) == 'title' &&
+                    strtolower($headers[1]) === 'price' &&
+                    strtolower($headers[2]) == 'image' &&
+                    strtolower($headers[3]) == 'sale end date' &&
+                    strtolower($headers[4]) == 'category' &&
+                    strtolower($headers[5]) == 'description') {
+
+                    while (($bulkAds = fgetcsv($handle, '100', ',')) !== false) {
+                            
+                        try {
+                            $bulkTitle = Input::getString($bulkAds[0]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkPrice = Input::getNumber($bulkAds[1]);    
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (RangeException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkImage = Input::getString($bulkAds[2]);      
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+
+                        try {
+                            $bulkEndDate = Input::getDate($bulkAds[3]);
+                        } catch (Exception $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try{
+                            $bulkCategory = Input::getString($bulkAds[4]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+                        try {
+                            $bulkDescription = Input::getString($bulkAds[5]);
+                        } catch (InvalidArguementException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (OutOfRangeException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (DomainException $e) {
+                            $errors[] = $e->getMessage();
+                        } catch (LengthException $e) {
+                            $errors[] = $e->getMessage();
+                        }
+
+
+
+                        if (empty($errors)) {
+                            $ad->title = $bulkTitle;
+                            $ad->price =$bulkPrice;
+                            $ad->image_url = $bulkImage;
+                            $postDate = date('Y-m-d');
+                            $ad->post_date = $postDate;
+                            $ad->sale_end_date = $bulkEndDate;
+                            $ad->categories = $bulkCategory;
+                            $ad->description = $bulkDescription;
+                            $ad->user_id = $_SESSION['id'];
+
+                            $ad->save();
+
+                        }
+                    }
+
+                } else {
+
+                    $errors[] = "Sorry, there was an error uploading your file.";
+                    $errors[] = "Please verify that your header line is formatted to: Title, Price, Image, Sale End Date, Category, Description. Not Case Sensitive.";
                 }
-
+            } else {
+                $errors[] = "Sorry, there was an error uploading your file.";
+                $errors[] = "Please verify that your header file includes a total of six columns formatted to: Title, Price, Image, Sale End Date, Category, Description. Not Case Sensitive.";
             }
-                
-
         }
     }
 
