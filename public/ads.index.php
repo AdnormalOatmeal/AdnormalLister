@@ -23,11 +23,6 @@
         header("Location: ?page=$totalPages");
         exit();
     }
-    // if (Input::has("column")) {
-    //     $column = Input::get("column");
-    // } else {
-    //     $column = "title";
-    // }
 
     if (Input::has("q")) {
         $q = Input::get("q");

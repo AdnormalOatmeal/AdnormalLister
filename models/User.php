@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'BaseModel.php';
+    require_once '../bootstrap.php';
 
     class User extends Model {
 

@@ -1,8 +1,8 @@
 <?php  
 
-error_reporting(0);
-
 require_once '../bootstrap.php';
+
+error_reporting(0);
 
 
 $user = Input::get("username");

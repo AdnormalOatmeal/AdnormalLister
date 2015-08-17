@@ -1,3 +1,9 @@
+<?php 		
+	require_once '../bootstrap.php';
+	$id = $_GET["id"]; 
+	$user = new User();
+	$currentUser = $user->find($id);
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -51,19 +57,6 @@
 		<?php require_once '../views/partials/header.php'; ?>
 		<!--===-->
 		<!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-		<?php 
-
-		require_once '../models/User.php';
-		
-		$id = $_GET["id"]; 
-		$user = new User();
-		$currentUser = $user->find($id);
-
-		// var_dump($currentUser);
-		// var_dump("GET ID: " . $id);
-		// var_dump("Session ID: " . $_SESSION["id"]);
-
-		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<?= $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"]?>

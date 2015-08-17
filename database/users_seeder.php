@@ -1,6 +1,5 @@
 <?php
-    require_once 'ads_config.php';
-    require_once 'db_connect.php';
+    require_once '../bootstrap.php':
 
     $truncateUsers = "TRUNCATE users";
 

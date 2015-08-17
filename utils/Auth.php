@@ -1,7 +1,5 @@
 <?php
 
-require_once '../database/ads_config.php';
-require_once '../database/db_connect.php';
 require_once '../bootstrap.php';
 
 class Auth {

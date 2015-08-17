@@ -1,6 +1,5 @@
 <?php
 	require_once '../bootstrap.php';
-	require_once '../models/Ad.php';
 
 	$id = $_GET["id"];
 	$currentAd = Ad::find($id);
