@@ -80,7 +80,7 @@
 					<div class="col-md-4 col-sm-4 col-xs-4">
 						<br>
 						<div>
-						<strong>Price: $</strong><?= $currentAd->attributes[0]["price"] ?>
+						<strong>Price:</strong> $<?= $currentAd->attributes[0]["price"] ?>
 						</div>
 						<div>
 						<strong>Date Posted: </strong><?= $currentAd->attributes[0]["post_date"] ?>

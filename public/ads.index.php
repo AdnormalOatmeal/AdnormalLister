@@ -61,6 +61,11 @@
             .thing {
                 font-size: 1.2em;
             }
+
+            .linked-images {
+                max-width: 150px;
+                max-height: 150px;
+            }
         </style>
 </head>
 <body>
@@ -70,17 +75,18 @@
 
     <div class="container">
     <!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-        <!-- NAVBAR -->
+        <!-- HEADER -->
         <?php require_once '../views/partials/header.php'; ?>
         <!--===-->
         <?php foreach ($ads as $key => $ad): ?>
-            <div class="container col-sm-6 col-md-4">
-                        
+            <div class="container col-sm-6 col-md-4">     
+                <a href="/ads/show?id=<?= $ad['id']; ?>">
                 <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
                 <h2><?= $ad['title']; ?></h2>
                 <!-- END HEADER LINK -->
                 
-                <img src="<?= $ad['image_url']; ?>" class="linked-images">
+                <img src="<?= $ad['image_url']; ?>" class="linked-images img-thumbnail">
+                </a>
                 <p class="thing">
                 <strong>Price: </strong>$<?= $ad['price']; ?> <br>
                 <strong>Categories: </strong><?= $ad['categories']; ?> <br>
