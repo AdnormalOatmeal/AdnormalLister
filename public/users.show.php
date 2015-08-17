@@ -1,3 +1,9 @@
+<?php 		
+	require_once '../bootstrap.php';
+	$id = $_GET["id"]; 
+	$user = new User();
+	$currentUser = $user->find($id);
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -51,45 +57,34 @@
 		<?php require_once '../views/partials/header.php'; ?>
 		<!--===-->
 		<!-- BEGINNING OF PAGE BODY. DO NOT PUT CUSTOM CODE BEFORE HERE -->
-		<?php 
-
-		require_once '../models/User.php';
-		
-		$id = $_GET["id"]; 
-		$user = new User();
-		$currentUser = $user->find($id);
-
-		// var_dump($currentUser);
-		// var_dump("GET ID: " . $id);
-		// var_dump("Session ID: " . $_SESSION["id"]);
-
-		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<?= $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"]?>
+				<?php if (isset($_SESSION['id'])) : ?>
 				<?php if ($_SESSION["id"] == $id) : ?>
 				<div class="test">
-				<a href="http://adnormallister.dev/users/edit?id=<?= $_SESSION["id"] ?>"><button class="btn btn-default editUser">Edit User</button></a>
+				<a href="http://adnormallister.dev/users/edit?id=<?= $_SESSION["id"]; ?>"><button class="btn btn-default editUser">Edit User</button></a>
 				</div>
+				<?php endif; ?>
 				<?php endif; ?>
 			</div>
 			<div class="panel-body">
 				<table class="table">
 					<tr>
 						<td>Username</td>
-						<td><?= $currentUser->attributes[0]["user_name"] ?></td>
+						<td><?= $currentUser->attributes[0]["user_name"]; ?></td>
 					</tr>
 					<tr>
 						<td>Email</td>
-						<td><?= $currentUser->attributes[0]["email"] ?></td>
+						<td><?= $currentUser->attributes[0]["email"]; ?></td>
 					</tr>
 					<tr>
 						<td>Location</td>
-						<td><?= $currentUser->attributes[0]["location"] ?></td>
+						<td><?= $currentUser->attributes[0]["location"]; ?></td>
 					</tr>
 					<tr>
 						<td>Organization</td>
-						<td><?= $currentUser->attributes[0]["organization"] ?></td>
+						<td><?= $currentUser->attributes[0]["organization"]; ?></td>
 					</tr>
 				</table>		
 			</div>
