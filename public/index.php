@@ -30,6 +30,9 @@ switch ($frontController[0]) {
 	case '/users/show':
 		include 'users.show.php';
 		break;
+	case '/users/ads':
+		include 'users.ads.php';
+		break;
 	default:
 		include 'home.php';
 		break;
