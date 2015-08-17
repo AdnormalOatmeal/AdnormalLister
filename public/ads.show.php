@@ -56,10 +56,10 @@
 				<div class="row">
 					<h2>
 						<?= $currentAd->attributes[0]["title"] ?>
-						<?php if (isset($userID)): ?>
-						<?php if ($_SESSION["id"] == $userId) : ?>
-							<a href="http://adnormallister.dev/ads/edit?id=<?= $currentAd->attributes[0]["id"] ?>"><button class="btn btn-default editUser">Edit Ad</button></a>
-						<?php endif; ?>
+						<?php if (isset($userId)): ?>
+							<?php if ($_SESSION["id"] == $userId) : ?>
+								<a href="http://adnormallister.dev/ads/edit?id=<?= $currentAd->attributes[0]["id"] ?>"><button class="btn btn-default editUser">Edit Ad</button></a>
+							<?php endif; ?>
 						<?php endif; ?>
 					</h2>
 				</div>

@@ -21,6 +21,17 @@
         header("Location: /ads/show?id=" . $id);
         exit();
     }
+
+    var_dump(Input::has('delete'));
+
+    if (Input::has('delete')) {
+        if (Input::get('delete') == true) {
+            Ad::delete($id);
+
+            header("Location: /users/show?id=" . $_SESSION["id"]);
+            exit();
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +64,13 @@
                 width: 500px;
                 margin: 10px auto;
             }
+            #save {
+                margin-left: -15px;
+            }
+            #deleteAd {
+                float: right;
+
+            }
         </style>
     </head>
 
@@ -69,6 +87,7 @@
 
         <div class="panel panel-default">
             <div class="panel-body">
+
                 <form method="POST">
                     <div class="form-group" action="adnormallister.dev/ads.edit.php">
                         <label for="title">Title</label>
@@ -101,10 +120,15 @@
                         <label for="description">Description</label>
                         <textarea class="form-control" rows="8" name="description" id="description" required><?= $currentAd->attributes[0]["description"]; ?></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-3" id="save">
                         <button class="btn btn-default">Save Changes</button>
                     </div>
                 </form>
+                    <div class="container">
+                        <a href="?id=<?= $id; ?>&delete=true">
+                            <button class="btn btn-danger" id="deleteAd">Delete Ad</button>
+                        </a>
+                    </div>
             </div>
         </div>
 
