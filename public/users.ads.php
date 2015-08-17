@@ -59,7 +59,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="css/main.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
 
         <style type="text/css">
             .thing {
@@ -86,10 +86,16 @@
             <div class="container col-sm-6 col-md-4">     
                 <a href="/ads/show?id=<?= $ad['id']; ?>">
                 <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
-                <h2><?= $ad['title']; ?></h2>
+                <h2>
+                    <?php if (strlen($ad['title']) > 20): ?>
+                        <?= substr($ad['title'], 0, 20) . "..."; ?>
+                    <?php else : ?>
+                        <?= $ad['title']; ?>
+                    <?php endif ?>
+                </h2>
                 <!-- END HEADER LINK -->
                 
-                <img src="<?= $ad['image_url']; ?>" class="linked-images img-thumbnail">
+                <img src="http://adnormallister.dev/<?= $ad['image_url']; ?>" class="linked-images img-thumbnail">
                 </a>
                 <p class="thing">
                 <strong>Price: </strong>$<?= $ad['price']; ?> <br>
@@ -98,8 +104,8 @@
                 </p>
             </div>
         <?php endforeach; ?>
+        
         <!-- PAGINATION STARTS -->
-
         <div class="container text-center">
             <a class='btn btn-danger' href="?page=1">First Page</a>
 

@@ -91,7 +91,13 @@
             <div class="container col-sm-6 col-md-4">     
                 <a href="/ads/show?id=<?= $ad['id']; ?>">
                 <!-- NEEDS TO INCLUDE A TAGS TO MAKE IT CLICKABLE -->
-                <h2><?= $ad['title']; ?></h2>
+                <h2>
+                    <?php if (strlen($ad['title']) > 20): ?>
+                        <?= substr($ad['title'], 0, 20) . "..."; ?>
+                    <?php else : ?>
+                        <?= $ad['title']; ?>
+                    <?php endif ?>
+                </h2>
                 <!-- END HEADER LINK -->
                 
                 <img src="<?= $ad['image_url']; ?>" class="linked-images img-thumbnail">

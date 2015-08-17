@@ -213,6 +213,9 @@ dd {
 	<!-- <div class="aSearch navbarFormat">
 		<button class="btn btn-default" data-toggle="modal" data-target="#aSearchModal">Advanced Search</button>
 	</div> -->
+	<div class="navbarFormat">
+		<a href="http://adnormallister.dev/ads"><button class="btn btn-default">View All</button></a>
+	</div>
 	<div class="newAdd navbarFormat">
 	<?php if ($isLoggedIn): ?>
 		<a href="http://adnormallister.dev/ads/create"><button class="btn btn-default">Create New Ad</button></a>
