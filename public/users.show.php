@@ -61,11 +61,11 @@
 			<div class="panel-heading">
 				<?= $currentUser->attributes[0]["first_name"] . " " . $currentUser->attributes[0]["last_name"]?>
 				<?php if (isset($_SESSION['id'])) : ?>
-				<?php if ($_SESSION["id"] == $id) : ?>
-				<div class="test">
-				<a href="http://adnormallister.dev/users/edit?id=<?= $_SESSION["id"]; ?>"><button class="btn btn-default editUser">Edit User</button></a>
-				</div>
-				<?php endif; ?>
+					<?php if ($_SESSION["id"] == $id) : ?>
+					<div class="test">
+					<a href="http://adnormallister.dev/users/edit?id=<?= $_SESSION["id"]; ?>"><button class="btn btn-default editUser">Edit User</button></a>
+					</div>
+					<?php endif; ?>
 				<?php endif; ?>
 			</div>
 			<div class="panel-body">
