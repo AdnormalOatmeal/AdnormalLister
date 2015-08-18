@@ -1,5 +1,5 @@
 <?php
-    require_once '../bootstrap';
+    require_once '../bootstrap.php';
 
     $truncateAds = "TRUNCATE ads";
 

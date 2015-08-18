@@ -57,7 +57,7 @@ class Input
 
     public static function getNumber($key, $min = 0, $max = 1000)
     {
-        $value = str_replace(',', '', static::get($key));
+        $value = static::get($key);
 
         if (!is_string($key)) {
             throw new InvalidArgumentException("$key must be a string");
