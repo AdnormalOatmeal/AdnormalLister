@@ -110,85 +110,28 @@
 
             $headers = fgetcsv($handle, '0', ',');
 
-            if (count($headers) === 6) {
+            if (count($headers) == 6) {
                 if (strtolower($headers[0]) == 'title' &&
-                    strtolower($headers[1]) === 'price' &&
+                    strtolower($headers[1]) == 'price' &&
                     strtolower($headers[2]) == 'image' &&
                     strtolower($headers[3]) == 'sale end date' &&
                     strtolower($headers[4]) == 'category' &&
                     strtolower($headers[5]) == 'description') {
 
-                    while (($bulkAds = fgetcsv($handle, '100', ',')) !== false) {
-                            
-                        try {
-                            $bulkTitle = Input::getString($bulkAds[0]);
-                        } catch (InvalidArguementException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (OutOfRangeException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (DomainException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (LengthException $e) {
-                            $errors[] = $e->getMessage();
-                        }
+                    while (($bulkAds = fgetcsv($handle, '0', ',')) !== false) {
+                        
+                        $bulkTitle = $bulkAds[0];
 
-                        try {
-                            $bulkPrice = Input::getNumber($bulkAds[1]);    
-                        } catch (InvalidArguementException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (OutOfRangeException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (DomainException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (RangeException $e) {
-                            $errors[] = $e->getMessage();
-                        }
+                        $bulkPrice = $bulkAds[1];
 
-                        try {
-                            $bulkImage = Input::getString($bulkAds[2]);      
-                        } catch (InvalidArguementException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (OutOfRangeException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (DomainException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (LengthException $e) {
-                            $errors[] = $e->getMessage();
-                        }
+                        $bulkImage = $bulkAds[2];
 
+                        $bulkEndDate = $bulkAds[3];
 
-                        try {
-                            $bulkEndDate = Input::getDate($bulkAds[3]);
-                        } catch (Exception $e) {
-                            $errors[] = $e->getMessage();
-                        }
-
-                        try{
-                            $bulkCategory = Input::getString($bulkAds[4]);
-                        } catch (InvalidArguementException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (OutOfRangeException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (DomainException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (LengthException $e) {
-                            $errors[] = $e->getMessage();
-                        }
-
-                        try {
-                            $bulkDescription = Input::getString($bulkAds[5]);
-                        } catch (InvalidArguementException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (OutOfRangeException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (DomainException $e) {
-                            $errors[] = $e->getMessage();
-                        } catch (LengthException $e) {
-                            $errors[] = $e->getMessage();
-                        }
-
-
-
+                        $bulkCategory = $bulkAds[4];
+                       
+                        $bulkDescription = $bulkAds[5];
+                        
                         if (empty($errors)) {
                             $ad->title = $bulkTitle;
                             $ad->price =$bulkPrice;
@@ -353,10 +296,5 @@
         <!-- Note: Includes JS -->
         <?php require_once '../views/partials/footer.php'; ?>
         <!--===-->
-        <script type="text/javascript">
-            $('#bulk_upload').on('click', function(e) { $(e).submit() });
-
-
-        </script>
     </body>
 </html>
