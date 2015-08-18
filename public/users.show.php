@@ -44,6 +44,10 @@
 				float: right;
 			}
 
+			#viewSelf{
+				text-align: center;
+			}
+
 		</style>
 	</head>
 
@@ -89,6 +93,13 @@
 				</table>		
 			</div>
 		</div>
+		<?php if (isset($_SESSION['id'])) : ?>
+			<?php if ($_SESSION["id"] == $id) : ?>
+			<div class="navbarFormat" id="viewSelf">
+				<a href="http://adnormallister.dev/users/ads"><button class="btn btn-danger">View Your Ads</button></a>
+			</div>
+			<?php endif; ?>
+		<?php endif; ?>
 
 		<!-- END OF PAGE BODY. DO NOT PUT CUSTOM CODE AFTER HERE -->
 		</div>
