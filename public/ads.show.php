@@ -56,7 +56,7 @@
 				<div class="row">
 					<h2>
 						<?= $currentAd->attributes[0]["title"] ?>
-						<?php if (isset($userId)): ?>
+						<?php if (isset($_SESSION['id'])) : ?>
 							<?php if ($_SESSION["id"] == $userId) : ?>
 								<a href="http://adnormallister.dev/ads/edit?id=<?= $currentAd->attributes[0]["id"] ?>"><button class="btn btn-default editUser">Edit Ad</button></a>
 							<?php endif; ?>
